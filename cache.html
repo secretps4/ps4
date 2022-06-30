@@ -1,0 +1,44 @@
+<html manifest="cache.manifest">
+	<head>
+		<meta charset="UTF-8">
+		<title>Host cemt 9.00</title>
+		<style>
+			body{
+				background-color:#1C4595;
+				color:white;
+				font-size:28px;
+				text-align:center;
+				overflow:hidden;
+				}
+			.info{
+				position:relative;
+				top:39%;
+				}
+		</style>
+		<script>
+			history.replaceState(null,null,'index.html');
+			var histlength=history.length;history.go(-histlength);
+			function DLProgress(e){
+				Percent=(Math.round(e.loaded / e.total * 100));
+				msgs.innerHTML="Instalando Cache ... " + Percent + "%"};
+			function DisplayCacheProgress(){
+				setTimeout(function(){
+					msgs.innerHTML="Cache instalado con exito";
+				},2000);
+				setTimeout(function(){
+					location.reload();
+				},3000);
+				}
+				window.applicationCache.addEventListener("progress",DLProgress,false);
+				window.applicationCache.oncached=function(e){
+				DisplayCacheProgress();
+			};
+			window.applicationCache.onupdateready=function(e){
+				DisplayCacheProgress();
+			};
+		</script>
+	</head>
+	<body style=overflow:hidden>
+		<div id=msgs class=info style='-webkit-font-feature-settings:"tnum";font-feature-settings:"tnum";'></div>
+	</body>
+</html>
